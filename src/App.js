@@ -7,18 +7,22 @@ class App extends React.Component {
         return (
             <Formik
                 initialValues={{
-                    FirstName:'',
-                    LastName:'',
-                    Gender:'',
+                    firstname:'',
+                    lastname:'',
+                    gender:'',
                     email: '',
                     password: '',
                     confirmPassword: ''
                 }}
                 validationSchema={Yup.object().shape({
                     firstname: Yup.string()
-                           .required('Firstname is required'),
+                                .matches(/^[A-Za-z ]*$/, 'Please enter valid name')
+                                .max(40)
+                                .required('firstname is required'),
                     lastname: Yup.string()
-                             .required('Firstname is required'),
+                            .matches(/^[A-Za-z ]*$/, 'Please enter valid name')
+                            .max(40)
+                             .required('lastname is required'),
                     gender: Yup.string()
                             .required('gender is required'),
                     email: Yup.string()
@@ -38,14 +42,14 @@ class App extends React.Component {
                 render={({ errors, status, touched }) => (
                     <Form>
                         <div className="form-group">
-                            <label htmlFor="fname">FirstName</label>
-                            <Field name="fname" type="text" className={'form-control' + (errors.firstname && touched.firstname ? ' is-invalid' : '')} />
-                            <ErrorMessage name="fname" component="div" className="invalid-feedback" />
+                            <label htmlFor="firstname">FirstName</label>
+                            <Field name="firstname" type="text" className={'form-control' + (errors.firstname && touched.firstname ? ' is-invalid' : '')} />
+                            <ErrorMessage name="firstname" component="div" className="invalid-feedback" />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="lname">LastName</label>
-                            <Field name="lname" type="text" className={'form-control' + (errors.lastname && touched.lastname ? ' is-invalid' : '')} />
-                            <ErrorMessage name="lname" component="div" className="invalid-feedback" />
+                            <label htmlFor="lastname">LastName</label>
+                            <Field name="lastname" type="text" className={'form-control' + (errors.lastname && touched.lastname ? ' is-invalid' : '')} />
+                            <ErrorMessage name="lastname" component="div" className="invalid-feedback" />
                         </div>
                       
                         <div className="form-group">
